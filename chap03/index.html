@@ -1,0 +1,34 @@
+<!-- https://time.geekbang.org/column/article/428904 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="app">
+    <h1 @click="add">{{state.count}} * 2 = {{double}}</h1>
+</div>
+<script>
+    const {reactive, computed} = Vue
+    let App = {
+        setup() {
+            const state = reactive({
+                count: 1
+            })
+
+            function add() {
+                state.count++
+            }
+
+            const double = computed(() => state.count * 2)
+            return {
+                state, add, double
+            }
+        }
+    }
+    Vue.createApp(App).mount('#app')
+</script>
+</body>
+</html>
